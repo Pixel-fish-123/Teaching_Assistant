@@ -1,1 +1,7 @@
-docs_v1/
+.env
+.venv/
+__pycache__/
+*.pyc
+data/app.db
+checkpoint/
+reference_material/
