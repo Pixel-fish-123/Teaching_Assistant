@@ -6,7 +6,7 @@
 - 选题：A2｜AI 助教·“教、学、评”闭环与个性化学习。
 - 课程：以《深度学习》选段为测试课程，参考书在 `reference_material/`。
 - 7 天目标：一人做出“带出处的问答 → 章节诊断 → 7 天计划”的可演示原型。
-- 当前阶段：D1-1 环境与 DeepSeek 连通；尚未开始业务代码。
+- 当前状态以 docs/plan.md §17 和 checkpoint/current.md 为准，本文件不重复维护阶段、模型名和进度；
 - 不做：真实用户/教师盲评、真实学习增益、教师后台、向量库、微调、多智能体、多课程。
 
 正式计划见 `docs/plan.md`；当前检查点见 `checkpoint/current.md`。
@@ -15,7 +15,7 @@
 
 - Python 默认 3.14；只有某个包装不上时，才降 3.12/3.11。
 - UI 只用 Streamlit 单体；不引入 FastAPI 双进程。
-- LLM 只用 DeepSeek `deepseek-flash`；运行期只读 `.env` 里的 `DEEPSEEK_API_KEY`。
+- LLM 使用 DeepSeek OpenAI 兼容接口；模型名以 .env 的 DEEPSEEK_MODEL 为准，默认 deepseek-flash,deepseek-chat / deepseek-reasoner 已停用，代码层直接拒绝。
 - `deepseek-chat` / `deepseek-reasoner` 是已停用的旧别名，不要使用。
 - 检索只用 BM25 + jieba；不引入向量库、embedding、Chroma、torch。
 - 数据库只用 SQLite；图表只用 Plotly。
@@ -92,13 +92,21 @@
 
 **D1-1 已完成**（2026-10-21）：Python 3.14.0、7 个依赖 import ok、`pip check` 通过、`deepseek-flash` 返回 `pong`。
 
-下一步是 **D1-2：Streamlit 聊天页 + 第 1 单元讲义**。开始前先按 `checkpoint/README.md` 创建新的 `checkpoint/current.md`，不要直接写代码。
+当前检查点是 **D1-2A：Streamlit 最小聊天页**，见 `checkpoint/current.md`。  
+`core/llm.py` 已通过导入、真实调用、旧模型拦截和缺 key 测试；`app.py` 尚未开始。
 
-D1-2 范围：
+D1-2A 范围：
 
-- 只做最小聊天页和第一单元资料
-- 不提前做 BM25、诊断、计划、数据库
+- 只做 `app.py`、`core/llm.py` 和最小聊天界面
+- 先不接课程资料、BM25、诊断、计划、数据库
 - 不新增依赖
+- 这一步只验证聊天链路，不把回答当课程事实
+
+D1-2B（之后再做）：
+
+- 第 1 单元讲义
+- 5 道题
+- 页面上能显示回答；引用和检索留到 D1-2C / D2
 
 ## 9. 交接状态（2026-10-21）
 
@@ -112,10 +120,13 @@ D1-2 范围：
   - `requirements.txt` 已生成
   - `.env` 在项目根目录，已被 `.gitignore` 忽略
 
-### 尚未开始
+### 正在进行
 
-- D1-2：Streamlit 聊天页 + 第 1 单元讲义
-- 尚未创建 `app.py`、`core/` 业务模块、课程 md、数据库
+- **D1-2A：Streamlit 最小聊天页**
+  - `core/llm.py` 已完成并通过冒烟测试
+  - `app.py` 仍是空文件，下一步写聊天页
+- D1-2B：第 1 单元讲义 + 5 道题，尚未开始
+- 尚未创建业务模块、课程 md、数据库
 - `reference_material/book_md/` 尚未整理
 - `docs/course/` 目前只有 README
 

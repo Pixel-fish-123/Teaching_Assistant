@@ -5,7 +5,8 @@
 ## 当前状态（2026-10-21）
 
 - **D1-1 已完成**：Python 3.14.0 + `.venv` + 7 个依赖 + `deepseek-flash` 连通测试通过。
-- **下一步 D1-2**：Streamlit 聊天页 + 第 1 单元讲义。
+- **当前检查点 D1-2A**：Streamlit 最小聊天页（见 `checkpoint/current.md`）。
+- **之后 D1-2B**：第 1 单元讲义 + 5 道题。
 - 尚未创建业务代码、课程 md、数据库。
 - 当前没有向量库，检索计划用 BM25 + jieba；UI 计划用 Streamlit 单体。
 
@@ -24,6 +25,7 @@ python scripts\test_deepseek.py
 - 计划：`docs/plan.md`
 - 模型操作边界与交接：`agent.md`
 - 检查点机制：`checkpoint/README.md`
+- 当前检查点：`checkpoint/current.md`（本地，不提交）
 - 参考书：`reference_material/深度学习.pdf`（只读，不提交）
 - 原文层：`reference_material/book_md/`（本地检索，不提交）
 - 摘要层：`docs/course/`（教学摘要，可提交）
