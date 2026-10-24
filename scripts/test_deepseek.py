@@ -15,10 +15,10 @@ client = OpenAI(
 )
 
 response = client.chat.completions.create(
-    model=os.getenv("DEEPSEEK_MODEL", "deepseek-flash"),
-    messages=[{"role": "user", "content": "Reply with exactly: pong"}],
-    temperature=0,
-    max_tokens=200,
+    model = os.getenv("DEEPSEEK_MODEL", "deepseek-flash"),
+    messages = [{"role": "user", "content": "Reply with exactly: pong"}],
+    temperature = 0,
+    max_tokens = 200,
 )
 
 print(response.choices[0].message.content)
